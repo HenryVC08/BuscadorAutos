@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded',() =>{
 //Event Lisener para los select de busqueda
 marca.addEventListener('change', (e)=>{
     datosBusqueda.marca = e.target.value
+
+    filtrarAuto()
 })
 
 year.addEventListener('change', (e)=>{
@@ -92,7 +94,6 @@ function mostraAutos(){
 //Genera los años del select
 function llenarSelect(){
 
-    console.log('Holaa')
     for( let i = max; i >= min ; i-- ){
         const opcion = document.createElement('option')   
         opcion.value = i;
@@ -100,4 +101,16 @@ function llenarSelect(){
 
         year.appendChild(opcion)
     }
+}
+
+function filtrarAuto(){
+    const resultado = autos.filter(filtrarMarca)
+    console.log(resultado)
+}
+
+function filtrarMarca(auto){
+    if(datosBusqueda.marca){
+        return auto.marca === datosBusqueda.marca
+    }
+    return auto
 }
